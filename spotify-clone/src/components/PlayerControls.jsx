@@ -16,7 +16,7 @@ export default function PlayerControls() {
 
   const changeState = async () => {
     const state = playerState ? "pause" : "play";
-    await axios.put(
+   const response = await axios.put(
       `https://api.spotify.com/v1/me/player/${state}`,
       {},
       {
@@ -71,7 +71,7 @@ export default function PlayerControls() {
       </div>
       <div className="previous">
         <CgPlayTrackPrev onClick={() => 
-          changeTrack("previous")}  />
+          changeTrack("previous") }  />
       </div>
       <div className="state">
         {playerState ? 
