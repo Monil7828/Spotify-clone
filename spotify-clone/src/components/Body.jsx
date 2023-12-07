@@ -10,7 +10,7 @@ export default function Body({headerBackground}) {
   const [{token, selectedPlaylistId, selectedPlaylist },dispatch]= useStateProvider();
   useEffect(()=> {
     const getInitialPlaylist = async () => {
-      const responce = await axios.get(
+      const response = await axios.get(
         `https://api.spotify.com/v1/playlists/${selectedPlaylistId}`,
             {
               headers: {
@@ -21,13 +21,13 @@ export default function Body({headerBackground}) {
         );
 
     const selectedPlaylist = {
-      id: responce.data.id,
-      name: responce.data.name,
-      description: responce.data.description.startsWith("<a")
+      id: response.data.id,
+      name: response.data.name,
+      description: response.data.description.startsWith("<a")
         ? ""
-        : responce.data.description,
-      image: responce.data.images[0].url,
-      tracks: responce.data.tracks.items.map(({ track }) => ({
+        : response.data.description,
+      image: response.data.images[0].url,
+      tracks: response.data.tracks.items.map(({ track }) => ({
         id: track.id,
         name: track.name,
         artists: track.artists.map((artist) => artist.name),
@@ -98,7 +98,16 @@ export default function Body({headerBackground}) {
                     <div
                       className="row"
                       key={id}
-                      
+                      /*onClick={() =>
+                        playTrack(
+                          id,
+                          name,
+                          artists,
+                          image,
+                          context_uri,
+                          track_number
+                        )
+                      }*/
                     >
                       <div className="col">
                         <span>{index + 1}</span>
